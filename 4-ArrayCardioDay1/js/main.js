@@ -83,5 +83,27 @@ console.log(yearsLived)
 // 7. sort Exercise
 // Sort the people alphabetically by last name
 
+const lastName = people.sort((lastOne,nextOne) => {
+  const [alast, afirst] = lastOne.split(', ')
+  const [blast, bfirst] = nextOne.split(', ')
+
+  if(alast > blast){
+    return 1;
+  }else{
+    return -1;
+  }
+})
+console.log(lastName)
+
     // 8. Reduce Exercise
     // Sum up the instances of each of these
+    const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck', 'pogostick'];
+    
+    const trans = data.reduce((obj, item) => {
+      if(!obj[item]){
+        obj[item] = 0;
+      }
+      obj[item]++;
+      return obj;
+    }, {})
+    console.log(trans)
