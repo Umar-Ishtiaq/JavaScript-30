@@ -1,41 +1,41 @@
-const endPoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
+const people = [
+    { name: 'Wes', year: 1988 },
+    { name: 'Kait', year: 1986 },
+    { name: 'Irv', year: 1970 },
+    { name: 'Lux', year: 2015 }
+  ];
 
-cities = [];
+  const comments = [
+    { text: 'Love this!', id: 523423 },
+    { text: 'Super good', id: 823423 },
+    { text: 'You are the best', id: 2039842 },
+    { text: 'Ramen is my fav food ever', id: 123523 },
+    { text: 'Nice Nice Nice!', id: 542328 }
+  ];
 
-fetch(endPoint)
-.then(res => res.json())
-.then(data => {
-    cities.push(...data)
-})
+  // some() method atleast one element?
+//   const person = people.some(element => {
+//       const currentYear = (new Date()).getFullYear();
+//       if(currentYear - element.year >= 19){
+//           return true;
+//       }
+//   })
+//   console.log(person)
 
-const search = document.querySelector('.search');
-const suggestions = document.querySelector('.suggestions');
+//every() method checks checks all the elemnets.
+// const everyOne = people.every((element) => {
+//     return  ((new Date()).getFullYear()) - element.year >= 19
+// })
+// console.log(everyOne)
 
-function findMatch(wordToMatch, cities){
-    return cities.filter(place => {
-        const regex = new RegExp(wordToMatch, 'gi');
-        return place.city.match(regex) || place.state.match(regex)
-    })    
-}
+//find() method works like filter but returns one value
+// const findPerson = comments.find(element => element.id === 823423)
+// console.log(findPerson)
 
-function numberWithCommas(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-  }
+//findIndex() method finds the index of the specified item
+const index = comments.findIndex(element => element.id === 823423)
+console.log(index)
 
-function displayMatch(){
-    const matchArray = findMatch(this.value, cities);
-    const html = matchArray.map(place => {
-        const regex = new RegExp(this.value, 'gi');
-        const cityName = place.city.replace(regex, `<span class='hl'>${this.value}</span>`)
-        const stateName = place.state.replace(regex, `<span class='hl'>${this.value}</span>`)
-        return `
-        <li>
-        <span class='name'>${cityName}, ${stateName}</span>
-        <span class='population'>${numberWithCommas(place.population)}</span>
-        </li>`
-    }).join('');
-    suggestions.innerHTML = html;
-
-}
-search.addEventListener('change', displayMatch)
-search.addEventListener('keyup', displayMatch)
+//delete item from the array
+comments.splice(1,1)
+console.log(comments)
