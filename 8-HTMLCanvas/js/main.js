@@ -10,6 +10,7 @@ ctx.strokeStyle = '#BADA55';
 ctx.linejoin = 'round';
 ctx.lineCap = 'round';
 ctx.lineWidth = 1;
+ctx.globalCompositeOperation = 'multiply'; // there are different methods that you can check out
 
 let isDrawing = false; //used to check if the cursor is pressed down or not
 let lastX = 0;
